@@ -1,0 +1,79 @@
+.switcher {
+  box-sizing: border-box;
+  display: block;
+  margin: 0 auto;
+  max-width: 1000px;
+  min-height: calc(
+    100vh - var(--header-height-mobile) - var(--footer-height-mobile)
+  );
+  padding: var(--page-offset);
+  position: relative;
+  text-align: center;
+  top: var(--header-height-mobile);
+  width: 100%;
+
+  @media (--tablet) {
+    min-height: calc(
+      100vh - var(--header-height-desktop) - var(--footer-height-desktop)
+    );
+    top: var(--header-height-desktop);
+  }
+}
+
+:global(.next) > * {
+  position: absolute;
+  top: var(--page-offset);
+  will-change: transform;
+}
+
+:global(.back) > * {
+  position: absolute;
+  top: var(--page-offset);
+  will-change: transform;
+}
+
+/** NEXT TRANSITION **/
+:global(.next) :global(.fade-enter) {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+:global(.next) :global(.fade-enter-active) {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 500ms;
+}
+
+:global(.next) :global(.fade-leave) {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+:global(.next) :global(.fade-leave-active) {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 500ms;
+}
+
+/** BACK TRANSITION **/
+:global(.back) :global(.fade-enter) {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+:global(.back) :global(.fade-enter-active) {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 500ms;
+}
+
+:global(.back) :global(.fade-leave) {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+:global(.back) :global(.fade-leave-active) {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 500ms;
+}
